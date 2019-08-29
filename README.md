@@ -24,15 +24,21 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple uwsgi flask simplejson p
 ### STEP-3 安装pyltp
 
 #### mac版本（已测试）
+1. 下载
 
-从https://pan.baidu.com/s/1QUeBt6oIJEfmH3u5vHlUdw下载pyltp_mac.zip到任意位置
+    ```
+    cd ltp_installers/mac
+    wget https://github.com/qiuhuadong2015/resources/raw/master/pyltp_mac.zip
+    unzip pyltp_mac.zip
+    ```
+    或从 https://pan.baidu.com/s/1QUeBt6oIJEfmH3u5vHlUdw 下载pyltp_mac.zip到任意位置，再解压得到pyltp文件夹
 
-解压得到pyltp文件夹
+2. 安装
 
-```shell
-cd pyltp
-python setup.py install
-```
+    ```shell
+    cd pyltp
+    python setup.py install
+    ```
 
 #### windows版本（未测试）
 
