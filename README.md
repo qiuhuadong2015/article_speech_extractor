@@ -107,6 +107,8 @@ cd webapp
 uwsgi --ini uwsgi.ini
 ```
 
+`Ctrl+C` 停止运行
+
 ### STEP-6 浏览器访问
 
 ```
@@ -141,4 +143,79 @@ curl -X POST --header "Content-Type: application/json" --header "Accept: applica
 
 ## 前后端集成部署
 
-TODO
+⚠️以下基于mac os 10.14环境
+
+### STEP-1 下载前端项目
+
+forked from [crescent0409/vue-ts-page](https://github.com/crescent0409/vue-ts-page)
+
+```
+git clone https://github.com/qiuhuadong2015/vue-ts-page
+```
+
+### STEP-2 构建项目
+
+```
+cd vue-ts-page
+npm run build
+```
+
+构建得到dist目录
+
+### STEP-3 部署到nginx
+
+#### 1. 安装nginx
+
+```
+brew install nginx
+```
+
+#### 2. 复制构建得到的`dist`文件夹到`/usr/local/var/www`目录下
+
+#### 3. 编辑conf文件
+
+打开文件
+
+```
+/usr/local/etc/nginx/nginx.conf
+```
+
+编辑内容
+
+```
+listen       80;
+server_name  localhost;
+
+location / {
+  alias /usr/local/var/www/dist/;
+  index index.html index.htm;
+}
+
+location /api {
+  include uwsgi_params;
+  uwsgi_pass localhost:5000;
+}
+```
+
+### STEP-4 运行nginx
+
+```
+nginx
+```
+
+### STEP-5 访问localhost
+
+首页
+
+![](https://github.com/qiuhuadong2015/vue-ts-page/raw/master/screenshots/single.png)
+
+结果
+
+![](https://github.com/qiuhuadong2015/vue-ts-page/raw/master/screenshots/localhost_8080_result1.png)
+
+### STEP-6 关闭nginx
+
+```
+nginx -s stop
+```
+
